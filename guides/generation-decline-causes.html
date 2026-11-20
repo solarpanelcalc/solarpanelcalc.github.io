@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>발전량 저하 원인과 대책 — 태양광발전 허브</title>
+<meta name="description" content="발전량 저하 원인과 대책: 그림자, 오염, 온도, 패널 열화, 인버터 이상, 케이블 손상별로 확인 순서와 측정 방법, 해결책을 설명합니다.">
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+:root{--navy:#0f172a;--navy2:#1e293b;--amber:#f59e0b;--amber-dark:#d97706;--amber-bg:#fef3c7;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--green:#15803d;--green-bg:#dcfce7;--red:#b91c1c;--red-bg:#fee2e2;--radius:14px;--shadow:0 1px 3px rgba(15,23,42,.08),0 4px 14px rgba(15,23,42,.06)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+a{color:var(--amber-dark)}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.header-in{display:flex;align-items:center;gap:14px;padding:13px 16px;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:1;min-width:200px}
+.brand .mark{width:38px;height:38px;border-radius:9px;background:var(--amber);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;flex:none}
+.brand b{font-size:19px;letter-spacing:.2px}
+.brand b span{color:var(--amber)}
+.brand small{display:block;font-size:11.5px;color:#94a3b8;font-weight:400}
+nav.main-nav{display:flex;gap:4px;flex-wrap:wrap}
+nav.main-nav a{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:600;padding:8px 11px;border-radius:8px}
+nav.main-nav a:hover{background:var(--navy2);color:#fff}
+.article{padding:26px 0 12px}
+.back{margin-bottom:10px}
+.back a{font-weight:700;text-decoration:none}
+.back a:hover{text-decoration:underline}
+.crumb{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--amber-dark);margin-bottom:6px}
+.article h1{font-size:clamp(26px,4.5vw,34px);line-height:1.25;margin-bottom:10px}
+.lede{font-size:17px;color:#334155;margin-bottom:22px}
+.article h2{font-size:21px;margin:28px 0 8px;padding-top:6px;border-top:2px solid var(--amber);display:inline-block}
+.article h3{font-size:17px;margin:18px 0 6px}
+.article p{font-size:15.5px;color:#1e293b;margin-bottom:12px}
+.article ul,.article ol{margin:0 0 14px 22px;font-size:15.5px;color:#1e293b}
+.article li{margin-bottom:6px}
+.article table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0 16px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+.article th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px}
+.article td{padding:9px 12px;border-bottom:1px solid var(--border)}
+.article tr:nth-child(even) td{background:#f8fafc}
+.formula{font-size:13.5px;color:var(--muted);background:#fff;border:1px dashed var(--border);border-radius:8px;padding:10px 12px;margin:12px 0}
+.formula code{color:var(--navy);font-weight:600}
+.safety{background:var(--red-bg);border-left:4px solid var(--red);border-radius:10px;padding:14px 16px;margin:22px 0;font-size:14.5px;color:#7f1d1d}
+.related{background:var(--amber-bg);border:1px solid #fde68a;border-radius:12px;padding:16px 18px;margin:22px 0}
+.related h3{font-size:15px;margin:0 0 8px}
+.related ul{margin:0 0 0 20px}
+.related li{margin-bottom:4px}
+footer{background:var(--navy);color:#94a3b8;margin-top:44px;padding:30px 0 26px}
+footer .cols{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:640px){footer .cols{grid-template-columns:2fr 1fr 1fr}}
+footer h4{color:#fff;font-size:15px;margin-bottom:10px}
+footer p,footer a{font-size:13.5px;color:#94a3b8;text-decoration:none}
+footer a:hover{color:#fff}
+footer ul{list-style:none}
+footer li{margin-bottom:6px}
+.copy{border-top:1px solid #1e293b;margin-top:22px;padding-top:16px;font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-in">
+    <a class="brand" href="../index.html"><span class="mark">태</span><span><b>태양광발전 <span>허브</span></b><small>solarpanelcalc.github.io/</small></span></a>
+    <nav class="main-nav">
+      <a href="../index.html#calculators">계산기</a>
+      <a href="../index.html#reference">참고표</a>
+      <a href="../index.html#guides">가이드</a>
+      <a href="../index.html#faq">자주 묻는 질문</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap article">
+  <p class="back"><a href="../index.html">&larr; 태양광발전 허브로 돌아가기</a></p>
+  <p class="crumb">가이드 / 발전량 관리</p>
+  <h1>발전량 저하 원인과 대책</h1>
+  <p class="lede">태양광 설비를 설치한 뒤 가장 먼저 드는 의문은 발전량이 예상보다 적을 때입니다. 맑은 날인데도 발전량이 줄었다면, 그림자, 오염, 온도, 패널 열화, 인버터 이상, 케이블 손상 중 하나가 원인일 가능성이 큽니다. 원인을 모른 채 패널을 교체하거나 인버터를 바꾸면 비용만 들고 문제는 그대로 남습니다. 이 글은 발전량 저하의 원인을 확인 순서대로 살펴보고, 원인별 측정 방법과 해결책을 정리합니다.</p>
+
+  <h2>먼저 정상 범위를 확인한다</h2>
+  <p>발전량이 줄었다고 느낄 때 가장 먼저 해야 할 일은 정상 범위를 확인하는 것입니다. 태양광 발전량은 계절에 따라 크게 달라집니다. 한국의 월별 발전량은 5월과 6월에 가장 많고, 12월과 1월에 가장 적습니다. 겨울 발전량이 여름의 절반 수준이라고 해서 고장이 아닙니다. 같은 달이라도 흐린 날이 많으면 월 발전량이 줄어듭니다. 따라서 발전량은 전날이나 지난주와 비교하지 말고, 전년 같은 달과 비교해야 합니다.</p>
+  <p>비교할 때는 일사량도 함께 봐야 합니다. 맑은 날이 적었던 달은 발전량이 줄어드는 것이 정상입니다. 기상청 일사량 자료나 인버터 모니터링의 일사량 기록이 있다면, 발전량을 일사량으로 나눈 값을 비교하는 것이 정확합니다. 일사량 대비 발전량이 전년과 비슷하다면 설비는 정상이고 날씨가 원인이었던 것이고, 일사량 대비 발전량이 줄었다면 설비에 문제가 있는 것입니다.</p>
+  <p>예상 발전량은 본 사이트의 발전량 예측 계산기로 확인할 수 있습니다. 3킬로와트피크 설비는 한국 평균 조건에서 하루 약 8.64킬로와트시, 한 달 약 259킬로와트시, 연간 약 3,154킬로와트시를 발전합니다. 실제 월 발전량이 예상값의 85퍼센트 이상이라면 정상 범위로 보고, 70퍼센트 아래로 떨어진다면 원인을 조사해야 합니다. 85퍼센트에서 70퍼센트 사이라면 오염이나 그림자 같은 가벼운 원인을 먼저 의심합니다.</p>
+  <p>모니터링 곡선도 중요한 단서입니다. 정상적인 맑은 날의 발전량 곡선은 오전에 서서히 올라가 정오 전후에 정점을 찍고 오후에 서서히 내려가는 종 모양입니다. 곡선이 정오에 평평하게 잘리면 인버터 클리핑을 의심하고, 곡선이 특정 시간대에 갑자기 꺾이면 그 시간대에 그림자가 드리워진 것입니다. 곡선이 들쭉날쭉하다면 구름의 영향이고, 전체가 낮게 깔리면 오염이나 열화를 의심합니다.</p>
+
+  <h2>그림자와 오염</h2>
+  <p>그림자는 발전량 저하의 가장 흔한 원인입니다. 나무가 자라거나 이웃 건물에 증축이 생기거나, 옥상에 새로 설치된 구조물이 그림자를 만들면 발전량이 줄어듭니다. 그림자는 패널 한 장에만 드리워져도 그 패널이 속한 스트링 전체의 출력을 떨어뜨릴 수 있습니다. 스트링 인버터 방식에서는 스트링 중 한 장의 출력이 줄면 스트링 전체 전류가 그 장에 맞춰지기 때문입니다. 그림자가 생기는 시간대를 확인하려면 하루 종일 패널을 관찰하거나, 모니터링 곡선에서 꺾이는 시간대를 찾아야 합니다.</p>
+  <p>그림자 대책은 원인을 제거하는 것이 가장 확실합니다. 나무 가지를 치거나, 그림자를 만드는 구조물을 옮기거나, 해당 패널을 다른 위치로 이동하는 방법이 있습니다. 제거가 어렵다면 파워 옵티마이저를 달아 패널별 최대전력점을 따로 추적하게 하거나, 그림자가 지는 패널만 별도 스트링으로 분리하는 방법이 있습니다. 마이크로인버터로 바꾸는 방법도 있지만 비용이 크므로, 먼저 그림자 시간대와 손실량을 측정해 경제성을 따져봐야 합니다.</p>
+  <p>오염은 두 번째로 흔한 원인입니다. 먼지, 황사, 조류 배설물, 공사 먼지, 공장 매연이 패널 표면을 덮으면 햇빛이 셀에 도달하지 못합니다. 오염 손실은 보통 2퍼센트에서 5퍼센트 수준이지만, 심한 경우 10퍼센트를 넘기도 합니다. 오염은 패널 전체에 고르게 쌓이기보다 부분적으로 얼룩을 만들어, 특정 셀만 출력을 떨어뜨리고 핫스팟을 유발하기도 합니다. 패널 표면을 육안으로 확인하고, 오염이 심하다면 청소 뒤 발전량을 비교해 효과를 확인합니다.</p>
+  <p>온도도 발전량에 영향을 줍니다. 결정질 실리콘 패널은 온도가 올라가면 출력이 줄어듭니다. 온도계수가 마이너스 0.4퍼센트 매 섭씨인 패널은 셀 온도가 25도에서 65도로 올라가면 출력이 약 16퍼센트 줄어듭니다. 여름 한낮에 패널 뒷면 온도가 70도를 넘는 것은 흔한 일입니다. 온도 손실은 정상적인 현상이므로, 여름 발전량이 봄보다 적다고 해서 고장으로 볼 수는 없습니다. 다만 패널 뒷면 통풍이 막혀 있으면 온도가 더 올라가므로, 패널과 지붕 사이에 통풍 간격이 확보되어 있는지 확인해야 합니다.</p>
+
+  <h2>패널 열화와 인버터 이상</h2>
+  <p>패널은 시간이 지나면서 서서히 성능이 떨어집니다. 일반적인 열화율은 연간 0.5퍼센트 수준으로, 10년이 지나면 초기 출력의 약 95퍼센트, 25년이 지나면 약 80퍼센트 수준이 됩니다. 열화율이 이보다 빠르다면 패널 불량을 의심해야 합니다. 열화는 스트링별 전압과 전류를 측정해 확인할 수 있습니다. 같은 조건의 스트링끼리 전압이나 전류가 5퍼센트 이상 차이 난다면, 낮은 쪽 스트링에 열화된 패널이 있을 가능성이 큽니다.</p>
+  <p>핫스팟은 열화와 함께 확인해야 할 현상입니다. 핫스팟은 셀의 일부가 과열되어 백시트에 갈색 반점이 생기거나, 열화상 카메라로 보면 특정 셀이 뜨겁게 보이는 상태입니다. 핫스팟이 생긴 패널은 출력이 떨어질 뿐 아니라 화재 위험도 있습니다. 육안으로 백시트 변색이 보이거나, 열화상 촬영에서 특정 셀이 20도 이상 뜨겁다면 해당 패널을 교체해야 합니다. 핫스팟은 제조 결함인 경우도 있어 보증 청구가 가능할 수 있습니다.</p>
+  <p>인버터 이상은 발전량 곡선에서 뚜렷하게 나타납니다. 인버터가 과열되면 출력이 제한되어 정오 곡선이 평평하게 잘리고, 오류가 발생하면 발전이 멈춰 곡선이 0으로 떨어집니다. 인버터 표시창의 오류 코드와 경고 이력을 확인하고, 냉각 팬 소음과 통풍구 상태를 점검합니다. 인버터가 자주 재기동하거나, 특정 시간대에만 멈춘다면 계통 전압 상승이나 접지 문제를 의심해야 합니다.</p>
+  <p>계통 전압 상승도 발전량 저하의 원인이 될 수 있습니다. 같은 변압기에 태양광이 많이 연결된 지역에서는 한낮에 계통 전압이 올라가 인버터의 과전압 보호가 동작해 발전이 멈추기도 합니다. 인버터 모니터링에서 전압 상승 시간대와 발전 중단 시간대가 일치한다면 한전에 전압 조정을 요청하거나, 인버터의 전압 보호 설정값을 규정 범위 안에서 조정해야 합니다. 이 조정은 자격을 갖춘 기술자가 수행해야 합니다.</p>
+  <table>
+    <tr><th>원인</th><th>발전량 감소 폭</th><th>확인 방법</th><th>대책</th></tr>
+    <tr><td>그림자</td><td>5~30%</td><td>시간대별 곡선, 현장 관찰</td><td>원인 제거, 옵티마이저</td></tr>
+    <tr><td>표면 오염</td><td>2~10%</td><td>육안 확인, 청소 전후 비교</td><td>패널 청소</td></tr>
+    <tr><td>고온 손실</td><td>10~16% (여름 한낮)</td><td>뒷면 온도 측정</td><td>통풍 간격 확보</td></tr>
+    <tr><td>패널 열화</td><td>연 0.5% 수준</td><td>스트링 전압·전류 비교</td><td>불량 패널 교체</td></tr>
+    <tr><td>핫스팟</td><td>스트링별 차이</td><td>열화상 촬영, 백시트 변색</td><td>해당 패널 교체</td></tr>
+    <tr><td>인버터 이상</td><td>부분 또는 전체 정지</td><td>오류 코드, 곡선 확인</td><td>팬 청소, 인버터 교체</td></tr>
+    <tr><td>케이블·커넥터</td><td>스트링별 차이</td><td>발열 확인, 저항 측정</td><td>커넥터 교체, 케이블 교체</td></tr>
+  </table>
+  <p>케이블과 커넥터 문제도 스트링별 차이로 나타납니다. 커넥터가 느슨해지면 접촉 저항이 커져 발열이 생기고, 그 스트링의 출력이 줄어듭니다. 접속함 내부의 퓨즈가 끊어지면 해당 스트링 전체가 멈춥니다. 스트링별 전류를 측정해 다른 스트링보다 낮은 스트링을 찾고, 그 스트링의 커넥터와 퓨즈, 케이블을 순서대로 점검합니다. 커넥터 발열은 손으로 만져서 확인하지 말고, 열화상 카메라나 온도 측정기로 확인해야 합니다.</p>
+
+  <h2>원인 확인 절차</h2>
+  <ol>
+    <li><strong>월 발전량을 전년 같은 달과 비교합니다.</strong> 15퍼센트 이상 줄었다면 원인 조사를 시작하고, 일사량 자료가 있다면 일사량 대비 발전량을 함께 비교합니다.</li>
+    <li><strong>모니터링 곡선을 살펴봅니다.</strong> 종 모양 곡선에서 꺾이는 시간대, 평평하게 잘리는 구간, 0으로 떨어지는 구간을 찾아 원인의 단서를 모읍니다.</li>
+    <li><strong>패널 표면과 그림자를 확인합니다.</strong> 오염과 균열, 변색을 육안으로 보고, 오전 9시부터 오후 3시 사이에 그림자가 드리워지는지 관찰합니다.</li>
+    <li><strong>인버터 오류 코드를 확인합니다.</strong> 표시창과 앱에서 오류 코드와 경고 이력을 확인하고, 팬 소음과 통풍구 상태를 점검합니다.</li>
+    <li><strong>스트링별 전압과 전류를 측정합니다.</strong> 같은 조건의 스트링끼리 비교해 낮은 스트링을 찾고, 그 스트링의 패널과 커넥터를 집중 점검합니다.</li>
+    <li><strong>열화상 카메라로 촬영합니다.</strong> 패널과 접속함, 커넥터를 열화상으로 촬영해 과열 부위를 찾습니다. 특정 셀만 뜨겁다면 핫스팟입니다.</li>
+    <li><strong>원인별 대책을 실행합니다.</strong> 청소, 그림자 제거, 커넥터 교체, 팬 청소 등 원인에 맞는 조치를 하고, 조치 전후 발전량을 비교합니다.</li>
+    <li><strong>결과를 기록합니다.</strong> 원인, 조치 내용, 조치 전후 발전량을 기록해 다음에 같은 문제가 생겼을 때 빠르게 대응할 수 있게 합니다.</li>
+  </ol>
+
+  <h2>자주 발생하는 문제</h2>
+  <ul>
+    <li><strong>계절 변화를 고장으로 오인:</strong> 겨울 발전량이 여름의 절반 수준인 것은 정상입니다. 전년 같은 달과 비교하지 않으면 잘못 판단합니다.</li>
+    <li><strong>한 장의 패널 문제로 전체 교체:</strong> 스트링 중 한 장만 불량인데 전체를 교체하면 비용이 큽니다. 스트링별 측정으로 불량 패널을 특정해야 합니다.</li>
+    <li><strong>그림자를 모르고 청소만 반복:</strong> 그림자가 원인인데 청소만 하면 발전량이 회복되지 않습니다. 곡선의 꺾이는 시간대를 먼저 확인해야 합니다.</li>
+    <li><strong>인버터 오류 코드 무시:</strong> 경고 이력을 확인하지 않으면 작은 이상이 큰 고장으로 커집니다. 오류 코드는 기록해 두어야 합니다.</li>
+    <li><strong>커넥터 발열을 손으로 확인:</strong> 직류 커넥터는 수백 볼트 전압이 걸려 있어 손으로 만지면 감전 위험이 있습니다. 온도 측정기를 써야 합니다.</li>
+    <li><strong>조치 뒤 효과 미확인:</strong> 청소나 교체 뒤 발전량을 비교하지 않으면 조치가 효과가 있었는지 알 수 없습니다. 전후 기록이 필요합니다.</li>
+  </ul>
+
+  <h2>발전량 기록과 비교 습관</h2>
+  <p>발전량 저하를 조기에 발견하는 가장 간단한 방법은 월별 발전량을 기록하고 전년 같은 달과 비교하는 습관입니다. 인버터 모니터링 앱에서 월 발전량을 확인해 노트나 표에 기록하면, 서서히 진행되는 열화도 숫자로 확인할 수 있습니다. 기록이 없으면 발전량이 줄었는지조차 알 수 없고, 보증 청구를 할 때도 근거 자료가 없어 불리합니다. 월 발전량과 함께 날씨와 청소 여부, 점검 내용을 함께 적어두면 원인 분석이 훨씬 쉬워집니다.</p>
+  <p>기록은 복잡하게 할 필요가 없습니다. 월 발전량, 전년 같은 달 발전량, 청소와 점검 날짜, 발견한 이상 네 가지만 적어도 충분합니다. 발전량이 전년보다 10퍼센트 이상 줄었다면 원인을 조사하고, 20퍼센트 이상 줄었다면 전문가 점검을 받는 것이 좋습니다. 기록을 1년 이상 쌓으면 계절 패턴이 보이므로, 계절 변화를 고장으로 오인하는 실수를 줄일 수 있습니다. 발전량 기록은 태양광 설비의 건강 기록부와 같다는 점을 기억하십시오.</p>
+
+  <h2>자주 묻는 질문</h2>
+  <h3>발전량이 갑자기 0이 되었는데 어디부터 확인해야 하나요?</h3>
+  <p>먼저 인버터 표시창과 차단기 상태를 확인합니다. 차단기가 내려갔다면 과전류나 누전이 원인일 수 있고, 인버터에 오류 코드가 뜬다면 그 코드가 원인을 알려줍니다. 차단기와 인버터에 이상이 없다면 계통 정전 여부를 확인하고, 접속함 퓨즈가 끊어졌는지 점검합니다. 원인을 모른 채 차단기를 다시 올리면 같은 문제가 반복될 수 있으므로, 원인을 찾은 뒤에 복구해야 합니다.</p>
+  <h3>스트링 하나만 발전량이 적은데 원인이 무엇인가요?</h3>
+  <p>그 스트링에 그림자가 지거나, 패널 한 장이 불량이거나, 커넥터가 느슨하거나, 퓨즈가 끊어졌을 가능성이 큽니다. 스트링별 전압과 전류를 측정해 다른 스트링과 비교하고, 전압이 정상인데 전류만 낮다면 패널이나 커넥터 문제, 전압 자체가 낮다면 패널 단락이나 퓨즈 문제를 의심합니다. 열화상 촬영으로 과열 부위를 찾으면 원인을 빠르게 특정할 수 있습니다.</p>
+  <h3>패널 열화는 보증으로 교체할 수 있나요?</h3>
+  <p>패널 출력 보증은 보통 25년간 초기 출력의 80퍼센트 이상을 유지하도록 정해져 있습니다. 보증 기준보다 출력이 더 떨어졌다면 제조사에 보증 청구를 할 수 있습니다. 청구에는 스트링별 측정 기록과 열화상 사진, 설치 연도와 모델 정보가 필요합니다. 측정 기록이 없으면 보증 심사가 어려우므로, 평소 발전량과 점검 기록을 남겨두는 것이 중요합니다.</p>
+
+  <div class="safety"><strong>안전 주의:</strong> 발전량 저하를 확인한다고 직류 배선을 직접 만지지 마십시오. 패널은 햇빛 아래에서 항상 수백 볼트의 전압을 만듭니다. 스트링 전압과 전류 측정은 반드시 자격을 갖춘 전기기술자가 수행해야 하며, 커넥터 발열은 손이 아니라 온도 측정기로 확인하십시오.</div>
+
+  <div class="related">
+    <h3>관련 계산기</h3>
+    <ul>
+      <li><a href="../index.html#calc-generation">발전량 예측 계산기</a> — 설비용량별 하루·월·연간 발전량</li>
+      <li><a href="../index.html#calc-cable">케이블·전압강하 계산기</a> — 직류 케이블의 전압강하와 3% 판정</li>
+      <li><a href="../index.html#calc-payback">경제성·회수기간 계산기</a> — 설치비 대비 회수기간과 20년 순이익</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>태양광발전 허브</h4>
+        <p>무료 태양광 계산기와 실무 가이드. KS C IEC 61215 · KS C 8561 기준 · 380V 3상 / 220V 단상 · 60Hz.</p>
+        <p style="margin-top:8px">solarpanelcalc.github.io/</p>
+      </div>
+      <div>
+        <h4>계산기</h4>
+        <ul>
+          <li><a href="../index.html#calc-generation">발전량 예측</a></li>
+          <li><a href="../index.html#calc-panels">패널 소요 수량·면적</a></li>
+          <li><a href="../index.html#calc-inverter">인버터 용량</a></li>
+          <li><a href="../index.html#calc-cable">케이블·전압강하</a></li>
+          <li><a href="../index.html#calc-payback">경제성·회수기간</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>가이드</h4>
+        <ul>
+          <li><a href="solar-installation-basics.html">태양광 설치 기초</a></li>
+          <li><a href="panel-angle-direction.html">패널 설치 각도와 방향</a></li>
+          <li><a href="inverter-selection.html">인버터 선택 실무</a></li>
+          <li><a href="maintenance-cleaning.html">태양광 유지보수·청소</a></li>
+          <li><a href="grid-connection.html">계통연계 절차</a></li>
+          <li><a href="generation-decline-causes.html">발전량 저하 원인과 대책</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2026 태양광발전 허브 · 모든 계산은 브라우저 안에서 처리됩니다 · 결과는 추정치입니다 — 제조사 자료와 현지 전기 규정을 확인하십시오.</div>
+  </div>
+</footer>
+</body>
+</html>

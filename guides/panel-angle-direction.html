@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>패널 설치 각도와 방향 — 태양광발전 허브</title>
+<meta name="description" content="패널 설치 각도와 방향: 정남향 30도가 최적인 이유, 동향·서향·지붕 경사의 발전량 차이, 계절별 태양 고도와 그림자 검토 방법을 설명합니다.">
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+:root{--navy:#0f172a;--navy2:#1e293b;--amber:#f59e0b;--amber-dark:#d97706;--amber-bg:#fef3c7;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--green:#15803d;--green-bg:#dcfce7;--red:#b91c1c;--red-bg:#fee2e2;--radius:14px;--shadow:0 1px 3px rgba(15,23,42,.08),0 4px 14px rgba(15,23,42,.06)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+a{color:var(--amber-dark)}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.header-in{display:flex;align-items:center;gap:14px;padding:13px 16px;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:1;min-width:200px}
+.brand .mark{width:38px;height:38px;border-radius:9px;background:var(--amber);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;flex:none}
+.brand b{font-size:19px;letter-spacing:.2px}
+.brand b span{color:var(--amber)}
+.brand small{display:block;font-size:11.5px;color:#94a3b8;font-weight:400}
+nav.main-nav{display:flex;gap:4px;flex-wrap:wrap}
+nav.main-nav a{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:600;padding:8px 11px;border-radius:8px}
+nav.main-nav a:hover{background:var(--navy2);color:#fff}
+.article{padding:26px 0 12px}
+.back{margin-bottom:10px}
+.back a{font-weight:700;text-decoration:none}
+.back a:hover{text-decoration:underline}
+.crumb{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--amber-dark);margin-bottom:6px}
+.article h1{font-size:clamp(26px,4.5vw,34px);line-height:1.25;margin-bottom:10px}
+.lede{font-size:17px;color:#334155;margin-bottom:22px}
+.article h2{font-size:21px;margin:28px 0 8px;padding-top:6px;border-top:2px solid var(--amber);display:inline-block}
+.article h3{font-size:17px;margin:18px 0 6px}
+.article p{font-size:15.5px;color:#1e293b;margin-bottom:12px}
+.article ul,.article ol{margin:0 0 14px 22px;font-size:15.5px;color:#1e293b}
+.article li{margin-bottom:6px}
+.article table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0 16px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+.article th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px}
+.article td{padding:9px 12px;border-bottom:1px solid var(--border)}
+.article tr:nth-child(even) td{background:#f8fafc}
+.formula{font-size:13.5px;color:var(--muted);background:#fff;border:1px dashed var(--border);border-radius:8px;padding:10px 12px;margin:12px 0}
+.formula code{color:var(--navy);font-weight:600}
+.safety{background:var(--red-bg);border-left:4px solid var(--red);border-radius:10px;padding:14px 16px;margin:22px 0;font-size:14.5px;color:#7f1d1d}
+.related{background:var(--amber-bg);border:1px solid #fde68a;border-radius:12px;padding:16px 18px;margin:22px 0}
+.related h3{font-size:15px;margin:0 0 8px}
+.related ul{margin:0 0 0 20px}
+.related li{margin-bottom:4px}
+footer{background:var(--navy);color:#94a3b8;margin-top:44px;padding:30px 0 26px}
+footer .cols{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:640px){footer .cols{grid-template-columns:2fr 1fr 1fr}}
+footer h4{color:#fff;font-size:15px;margin-bottom:10px}
+footer p,footer a{font-size:13.5px;color:#94a3b8;text-decoration:none}
+footer a:hover{color:#fff}
+footer ul{list-style:none}
+footer li{margin-bottom:6px}
+.copy{border-top:1px solid #1e293b;margin-top:22px;padding-top:16px;font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-in">
+    <a class="brand" href="../index.html"><span class="mark">태</span><span><b>태양광발전 <span>허브</span></b><small>solarpanelcalc.github.io/</small></span></a>
+    <nav class="main-nav">
+      <a href="../index.html#calculators">계산기</a>
+      <a href="../index.html#reference">참고표</a>
+      <a href="../index.html#guides">가이드</a>
+      <a href="../index.html#faq">자주 묻는 질문</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap article">
+  <p class="back"><a href="../index.html">&larr; 태양광발전 허브로 돌아가기</a></p>
+  <p class="crumb">가이드 / 설계</p>
+  <h1>패널 설치 각도와 방향</h1>
+  <p class="lede">같은 패널을 같은 지붕에 올려도, 방향과 각도를 어떻게 잡느냐에 따라 일 년 발전량이 10퍼센트 이상 달라집니다. 한국에서는 정남향에 경사각 30도 전후가 연간 발전량 기준으로 가장 유리하다고 알려져 있습니다. 그러나 모든 지붕이 남향인 것은 아니며, 낮에 집을 비우는 가정과 오후에 전기를 많이 쓰는 사업장은 최적 조건이 다를 수 있습니다. 이 글은 방향과 각도가 발전량에 미치는 영향을 수치로 살펴보고, 지붕 조건에 맞는 현실적인 선택 방법을 설명합니다.</p>
+
+  <h2>방향이 발전량을 정하는 원리</h2>
+  <p>태양광 패널은 햇빛이 표면에 수직에 가깝게 들어올 때 가장 많은 전기를 만듭니다. 태양은 동쪽에서 떠서 남쪽 하늘을 지나 서쪽으로 지므로, 하루 동안 패널이 받는 햇빛의 총량은 방향에 따라 달라집니다. 정남향을 바라보는 패널은 오전부터 오후까지 골고루 햇빛을 받아 하루 총량이 가장 많습니다. 동향을 바라보는 패널은 오전 발전량이 많고 오후에는 줄며, 서향을 바라보는 패널은 그 반대의 패턴을 보입니다.</p>
+  <p>북향은 한국에서 가장 불리한 방향입니다. 북향 패널은 직사광을 거의 받지 못하고 확산광에만 의존하므로, 연간 발전량이 정남향의 60퍼센트 수준까지 떨어질 수 있습니다. 북향 지붕에 설치를 검토한다면 발전량 시뮬레이션을 반드시 먼저 수행하고, 경제성이 나오는지 냉정하게 따져야 합니다. 북향이라도 경사가 완만하다면 손실이 줄어들지만, 경사가 가파른 북향 지붕은 설치를 재검토하는 것이 좋습니다.</p>
+  <p>방향의 영향은 위도와 계절에 따라서도 달라집니다. 한국은 북위 33도에서 43도 사이에 있어, 태양이 남쪽 하늘 높이 떠오르는 여름에는 방향 차이가 줄어들고, 태양 고도가 낮은 겨울에는 방향 차이가 커집니다. 겨울철 난방용 전기를 많이 쓰는 가정이라면 남향의 이점이 더 커지고, 여름철 냉방용 전기를 많이 쓰는 사업장이라면 방향 차이가 상대적으로 작아집니다. 따라서 방향을 정할 때는 연간 총량뿐 아니라 월별 사용 패턴까지 함께 보는 것이 좋습니다.</p>
+  <p>지붕 방향이 남향에서 벗어났다고 해서 설치를 포기할 필요는 없습니다. 동남향이나 서남향은 정남향 대비 연간 발전량 감소가 3퍼센트에서 5퍼센트 수준에 불과합니다. 정동향이나 정서향도 감소 폭이 10퍼센트 안팎이므로, 전기요금 절감 효과가 여전히 큽니다. 실제로는 지붕 방향에 패널을 그대로 얹는 것이 구조물 비용을 줄이고 방수 위험을 낮추는 장점이 있어, 최적 각도를 억지로 맞추느라 구조물을 복잡하게 만드는 것보다 유리한 경우가 많습니다.</p>
+
+  <h2>경사각이 발전량을 정하는 원리</h2>
+  <p>경사각은 패널 표면이 수평면과 이루는 각도입니다. 경사각이 0도인 수평 설치는 여름 정오의 높은 태양에는 유리하지만, 겨울의 낮은 태양에는 불리합니다. 반대로 경사각이 60도처럼 가파르면 겨울에는 유리하지만 여름에는 손해를 봅니다. 연간 총량을 기준으로 하면 두 계절의 손익이 균형을 이루는 30도 전후가 최적점이 됩니다. 서울 기준으로 연간 최적 경사각은 대략 30도에서 35도 사이로 계산됩니다.</p>
+  <p>경사각의 영향은 방향보다 작은 편입니다. 경사각을 최적값에서 10도 벗어나게 설치해도 연간 발전량 감소는 2퍼센트에서 3퍼센트 수준에 그칩니다. 경사각을 15도까지 낮추어도 감소 폭은 5퍼센트 안팎입니다. 따라서 지붕 경사가 20도에서 35도 사이라면 굳이 각도를 바꾸려 하지 말고 지붕 경사를 그대로 쓰는 것이 합리적입니다. 평지붕에서 구조물로 각도를 만들 때는 30도를 목표로 하되, 바람 하중과 구조물 비용을 함께 고려해야 합니다.</p>
+  <p>경사각은 자가 세정 효과와도 관련이 있습니다. 경사가 10도 미만으로 완만하면 빗물이 패널 표면을 잘 씻어내지 못하고 먼지가 쌓이기 쉽습니다. 경사가 15도 이상이면 비가 올 때 먼지가 자연스럽게 흘러내려 청소 주기를 늘릴 수 있습니다. 경사가 가파를수록 눈이 쌓이지 않는 장점도 있습니다. 한국의 적설량이 많은 지역에서는 경사각을 30도보다 조금 크게 잡는 것이 겨울 발전량 유지에 도움이 됩니다.</p>
+  <p>계절별 사용 목적에 따라 최적 각도를 조정할 수도 있습니다. 여름철 발전량을 극대화하려면 경사각을 15도에서 20도 정도로 낮추고, 겨울철 발전량을 중시한다면 45도 정도로 높이는 방법이 있습니다. 그러나 각도를 계절마다 바꾸는 가변 구조물은 비용과 고장 위험이 커서 주택용 설비에서는 거의 쓰이지 않습니다. 고정식 구조물이라면 연간 총량을 기준으로 30도 전후를 선택하는 것이 가장 무난합니다.</p>
+
+  <h2>방향과 각도별 발전량 비교</h2>
+  <p>아래 표는 3킬로와트피크 설비를 기준으로 방향과 경사각을 바꿨을 때의 연간 발전량을 비교한 것입니다. 기준값은 정남향 30도 설치 시 연간 약 3,154킬로와트시이며, 다른 조건은 그에 대한 상대 비율로 나타냈습니다. 이 수치는 한국 중부 지역을 가정한 참고값이므로, 실제 발전량은 지역 일사량과 그림자 조건에 따라 달라집니다.</p>
+  <table>
+    <tr><th>설치 방향</th><th>경사각</th><th>연간 발전량 (kWh)</th><th>정남향 30도 대비</th></tr>
+    <tr><td>정남향</td><td>30도</td><td>3,154</td><td>100%</td></tr>
+    <tr><td>정남향</td><td>15도</td><td>2,996</td><td>95%</td></tr>
+    <tr><td>정남향</td><td>45도</td><td>3,028</td><td>96%</td></tr>
+    <tr><td>동남향</td><td>30도</td><td>3,059</td><td>97%</td></tr>
+    <tr><td>서남향</td><td>30도</td><td>3,059</td><td>97%</td></tr>
+    <tr><td>정동향</td><td>30도</td><td>2,839</td><td>90%</td></tr>
+    <tr><td>정서향</td><td>30도</td><td>2,839</td><td>90%</td></tr>
+    <tr><td>정남향</td><td>0도 (수평)</td><td>2,681</td><td>85%</td></tr>
+    <tr><td>정북향</td><td>30도</td><td>1,892</td><td>60%</td></tr>
+  </table>
+  <p>표에서 보듯 동향과 서향의 연간 손실은 10퍼센트 안팎으로, 생각보다 크지 않습니다. 그런데 시간대별 패턴은 크게 다릅니다. 동향 패널은 오전 10시 이전에 하루 발전량의 절반 가까이를 만들고, 서향 패널은 오후 2시 이후에 발전량이 집중됩니다. 낮에 집을 비우고 저녁에 전기를 많이 쓰는 가정이라면 서향 설치가 자가소비율을 높여 경제성을 개선할 수 있습니다. 오전에 세탁기와 청소기를 돌리는 가정이라면 동향이 유리합니다.</p>
+  <p>최근에는 동향과 서향을 반반씩 설치하는東西 분산 배치도 주목받고 있습니다. 동향과 서향을 함께 설치하면 발전 시간대가 넓어져 하루 종일 고르게 전기를 만들 수 있습니다. 연간 총량은 정남향보다 10퍼센트 정도 적지만, 자가소비율이 높아져 판매보다 자가소비가 유리한 요금제에서는 전체 절감액이 정남향과 비슷해지기도 합니다. 지붕이 동서 양쪽으로 나뉜 집이라면 이 방식을 검토해 볼 만합니다.</p>
+
+  <h2>현장별 각도와 방향 결정 절차</h2>
+  <ol>
+    <li><strong>지붕 방향과 경사를 측정합니다.</strong> 나침반 앱이나 지붕 실측으로 방위각을 확인하고, 경사각 측정기로 지붕 경사를 잽니다. 방위각은 정남향을 0도로 하여 동쪽은 마이너스, 서쪽은 플러스로 기록합니다.</li>
+    <li><strong>그림자 조건을 조사합니다.</strong> 오전 9시부터 오후 3시 사이에 패널 위치에 그림자가 드리워지는지 확인합니다. 나무, 굴뚝, 이웃 건물, 옥상 구조물의 그림자를 계절별로 검토합니다.</li>
+    <li><strong>월별 전기 사용량을 정리합니다.</strong> 최근 1년 치 전기요금 고지서를 모아 월별 사용량을 확인하고, 여름과 겨울 중 어느 계절의 사용량이 많은지 파악합니다.</li>
+    <li><strong>후보 조건의 발전량을 계산합니다.</strong> 본 사이트의 발전량 예측 계산기로 기준 발전량을 구한 뒤, 위 표의 비율을 적용해 방향과 각도별 연간 발전량을 비교합니다.</li>
+    <li><strong>자가소비율을 따져봅니다.</strong> 낮 시간대 사용량이 많다면 남향이 유리하고, 오전이나 오후에 사용이 집중된다면 동향이나 서향을 함께 검토합니다.</li>
+    <li><strong>구조물 비용과 방수 위험을 비교합니다.</strong> 지붕 경사를 그대로 쓰는 경우와 구조물로 각도를 바꾸는 경우의 공사비, 하중, 방수 처리 난이도를 견적과 함께 비교합니다.</li>
+    <li><strong>최종 배치도를 확정합니다.</strong> 방향, 경사각, 패널 장수, 스트링 구성을 배치도에 반영하고, 유지보수 통로와 그림자 간격을 확보했는지 다시 확인합니다.</li>
+    <li><strong>설치 후 발전량을 검증합니다.</strong> 발전 개시 후 한 달 치 발전량을 모니터링 기록과 비교하고, 예상보다 15퍼센트 이상 적다면 그림자나 접속 불량을 점검합니다.</li>
+  </ol>
+
+  <h2>자주 발생하는 문제</h2>
+  <ul>
+    <li><strong>북향 지붕에 무리한 설치:</strong> 발전량이 정남향의 60퍼센트 수준까지 떨어져 회수기간이 크게 늘어납니다. 북향은 발전량 검토를 먼저 하고 경제성을 확인해야 합니다.</li>
+    <li><strong>평지붕 수평 설치:</strong> 경사각 0도에서는 먼지와 눈이 쌓여 발전량이 줄고 청소가 잦아집니다. 평지붕에서는 최소 10도 이상의 경사를 만드는 것이 좋습니다.</li>
+    <li><strong>겨울 그림자 간과:</strong> 여름에는 없던 이웃 건물 그림자가 겨울에 생겨 발전량이 급감합니다. 겨울철 태양 고도를 기준으로 그림자를 검토해야 합니다.</li>
+    <li><strong>패널 간 그림자:</strong> 앞줄 패널이 뒷줄 패널에 그림자를 만들면 오전과 오후 발전량이 줄어듭니다. 앞뒤 간격은 패널 높이와 동지 태양 고도를 기준으로 확보해야 합니다.</li>
+    <li><strong>방향만 보고 각도를 무시:</strong> 정남향이라도 경사각이 60도를 넘으면 연간 발전량이 10퍼센트 이상 줄어듭니다. 방향과 각도는 함께 검토해야 합니다.</li>
+    <li><strong>시간대 패턴 무시:</strong> 연간 총량만 보고 남향을 고르면 자가소비율이 낮아질 수 있습니다. 사용 시간대에 맞는 방향 선택이 절감액을 키웁니다.</li>
+  </ul>
+
+  <h2>지붕 형태별 설치 방법</h2>
+  <p>경사지붕에서는 지붕 경사를 그대로 쓰는 것이 가장 경제적이고 안전합니다. 기와 지붕에는 기와를 들어내고 앵커를 고정한 뒤 방수 처리를 하고, 금속 지붕에는 클립으로 구조물을 고정해 지붕에 구멍을 뚫지 않는 방식을 쓰기도 합니다. 경사지붕의 경사가 20도에서 35도 사이라면 각도를 바꾸지 않고 그대로 설치하는 것이 좋고, 경사가 15도 미만이거나 40도를 넘는다면 발전량 감소를 계산에 반영해야 합니다. 지붕면이 여러 방향으로 나뉜 집에서는 면마다 스트링을 나누고, MPPT 회로가 여러 개인 인버터를 쓰는 것이 발전량 손실을 줄이는 방법입니다.</p>
+  <p>평지붕에서는 구조물로 경사를 만들어 줍니다. 평지붕 구조물은 보통 30도 경사를 만들고, 앞뒤 패널 간격을 넓게 잡아 앞줄 패널의 그림자가 뒷줄에 드리워지지 않게 합니다. 간격이 좁으면 겨울철 오전과 오후 발전량이 줄어듭니다. 평지붕 구조물은 콘크리트 블록으로 고정하거나 앵커로 고정하는데, 콘크리트 블록 방식은 지붕 방수층을 뚫지 않는 장점이 있지만 무게가 늘어나 하중 검토가 필요합니다. 앵커 방식은 하중이 적지만 방수 처리를 철저히 해야 합니다. 평지붕에서는 바람 하중도 커지므로, 구조물 설계 시 풍하중 계산을 반드시 확인해야 합니다.</p>
+  <p>지상 설치는 지붕 설치보다 공간이 넓고 각도와 방향을 자유롭게 정할 수 있다는 장점이 있습니다. 그러나 토지 이용 규제와 개발행위 허가, 농지 전용 등 추가 절차가 필요할 수 있습니다. 지상 설비는 잡초 관리와 배수, 울타리 설치까지 고려해야 하며, 패널 하단이 지면에서 충분히 떨어져 있어야 잡초 그림자와 침수 피해를 막을 수 있습니다. 주차장 캐노피형 설치는 그늘과 발전을 함께 얻는 방식이지만, 구조물 비용이 높아 경제성 검토가 필요합니다. 어떤 형태든 지붕이나 지면의 하중, 방수, 바람, 그림자를 함께 검토한 뒤에 최종 형태를 정해야 합니다.</p>
+
+  <h2>자주 묻는 질문</h2>
+  <h3>지붕이 동향인데 설치해도 되나요?</h3>
+  <p>네, 설치할 수 있습니다. 정동향 30도 설치의 연간 발전량은 정남향의 약 90퍼센트 수준으로, 손실이 10퍼센트 안팎에 그칩니다. 오전 발전량이 많아 오전에 전기를 많이 쓰는 가정에서는 자가소비율이 오히려 높아질 수 있습니다. 지붕 경사를 그대로 쓰고 구조물을 단순하게 유지하면 공사비도 절감되므로, 동향이라는 이유만으로 설치를 포기할 필요는 없습니다.</p>
+  <h3>경사각을 30도로 맞추려면 구조물을 새로 만들어야 하나요?</h3>
+  <p>경사지붕에서는 지붕 경사를 그대로 쓰는 것이 일반적이며, 경사가 20도에서 35도 사이라면 구조물로 각도를 바꿀 필요가 없습니다. 평지붕에서만 구조물로 경사를 만드는데, 이때 30도를 목표로 하되 바람 하중과 비용을 함께 고려해야 합니다. 각도를 10도 정도 바꾸는 것만으로 발전량 차이가 2퍼센트에서 3퍼센트 수준이므로, 구조물을 복잡하게 만들면서까지 최적 각도를 맞출 필요는 없습니다.</p>
+  <h3>동향과 서향을 반반씩 설치하면 어떤 장점이 있나요?</h3>
+  <p>발전 시간대가 넓어져 오전부터 저녁까지 고르게 전기를 만들 수 있습니다. 연간 총량은 정남향보다 약 10퍼센트 적지만, 낮 시간대 자가소비율이 높아져 전기요금 절감 효과가 커질 수 있습니다. 지붕이 동서 양면으로 나뉜 집이나, 오전과 오후 모두 전기를 쓰는 사업장에서 검토해 볼 만한 배치 방식입니다.</p>
+
+  <div class="safety"><strong>안전 주의:</strong> 지붕 위 작업은 추락 위험이 있습니다. 경사각을 측정하거나 그림자를 확인할 때에도 지붕 가장자리에 가까이 가지 말고, 안전모와 안전대를 착용하십시오. 패널 설치와 각도 조정 작업은 반드시 자격을 갖춘 시공업체에 맡기십시오.</div>
+
+  <div class="related">
+    <h3>관련 계산기</h3>
+    <ul>
+      <li><a href="../index.html#calc-generation">발전량 예측 계산기</a> — 설비용량별 하루·월·연간 발전량</li>
+      <li><a href="../index.html#calc-panels">패널 소요 수량·면적 계산기</a> — 목표 용량과 지붕 면적에 맞는 패널 수량</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>태양광발전 허브</h4>
+        <p>무료 태양광 계산기와 실무 가이드. KS C IEC 61215 · KS C 8561 기준 · 380V 3상 / 220V 단상 · 60Hz.</p>
+        <p style="margin-top:8px">solarpanelcalc.github.io/</p>
+      </div>
+      <div>
+        <h4>계산기</h4>
+        <ul>
+          <li><a href="../index.html#calc-generation">발전량 예측</a></li>
+          <li><a href="../index.html#calc-panels">패널 소요 수량·면적</a></li>
+          <li><a href="../index.html#calc-inverter">인버터 용량</a></li>
+          <li><a href="../index.html#calc-cable">케이블·전압강하</a></li>
+          <li><a href="../index.html#calc-payback">경제성·회수기간</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>가이드</h4>
+        <ul>
+          <li><a href="solar-installation-basics.html">태양광 설치 기초</a></li>
+          <li><a href="panel-angle-direction.html">패널 설치 각도와 방향</a></li>
+          <li><a href="inverter-selection.html">인버터 선택 실무</a></li>
+          <li><a href="maintenance-cleaning.html">태양광 유지보수·청소</a></li>
+          <li><a href="grid-connection.html">계통연계 절차</a></li>
+          <li><a href="generation-decline-causes.html">발전량 저하 원인과 대책</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2026 태양광발전 허브 · 모든 계산은 브라우저 안에서 처리됩니다 · 결과는 추정치입니다 — 제조사 자료와 현지 전기 규정을 확인하십시오.</div>
+  </div>
+</footer>
+</body>
+</html>
