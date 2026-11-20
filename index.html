@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>태양광발전 허브 — 태양광 발전량·패널·인버터·경제성 계산기</title>
+<meta name="description" content="태양광발전 허브: 무료 온라인 태양광 계산기 — 발전량 예측, 패널 소요 수량과 면적, 인버터 용량, 케이블 전압강하, 경제성과 회수기간. KS C IEC 61215, KS C 8561, KEC 기준, 380V 3상 / 220V 단상 60Hz.">
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root{--navy:#0f172a;--navy2:#1e293b;--amber:#f59e0b;--amber-dark:#d97706;--amber-bg:#fef3c7;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--green:#15803d;--green-bg:#dcfce7;--red:#b91c1c;--red-bg:#fee2e2;--radius:14px;--shadow:0 1px 3px rgba(15,23,42,.08),0 4px 14px rgba(15,23,42,.06)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--amber-dark)}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.header-in{display:flex;align-items:center;gap:14px;padding:13px 16px;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:1;min-width:200px}
+.brand .mark{width:38px;height:38px;border-radius:9px;background:var(--amber);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;flex:none}
+.brand b{font-size:19px;letter-spacing:.2px}
+.brand b span{color:var(--amber)}
+.brand small{display:block;font-size:11.5px;color:#94a3b8;font-weight:400}
+nav.main-nav{display:flex;gap:4px;flex-wrap:wrap}
+nav.main-nav a{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:600;padding:8px 11px;border-radius:8px}
+nav.main-nav a:hover{background:var(--navy2);color:#fff}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1e293b 60%,#334155 100%);color:#fff;padding:44px 0 40px}
+.hero h1{font-size:clamp(26px,5vw,40px);line-height:1.2;max-width:760px}
+.hero h1 span{color:var(--amber)}
+.hero p{color:#cbd5e1;font-size:16px;max-width:720px;margin-top:12px}
+.hero .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hero .badge{background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.45);color:#fde68a;font-size:13px;font-weight:600;border-radius:999px;padding:6px 13px}
+section{padding:34px 0 8px}
+section h2{font-size:24px;margin-bottom:6px}
+section h2 .bar{color:var(--amber)}
+.section-sub{color:var(--muted);font-size:15px;max-width:760px;margin-bottom:20px}
+.calc-grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:860px){.calc-grid{grid-template-columns:1fr 1fr}.calc-grid .wide{grid-column:1 / -1}}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px;border-top:4px solid var(--amber)}
+.card h3{font-size:18px;margin-bottom:2px}
+.card .tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-dark)}
+.card .desc{font-size:14px;color:var(--muted);margin:6px 0 16px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.field label small{font-weight:400;color:var(--muted)}
+.field input,.field select{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;background:#fff;color:var(--text)}
+.field input:focus,.field select:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(245,158,11,.18)}
+.field-row{display:grid;grid-template-columns:1fr;gap:0 12px}
+@media(min-width:560px){.field-row{grid-template-columns:1fr 1fr}}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--amber);color:var(--navy);border:0;border-radius:10px;padding:12px 22px;font-size:15px;font-weight:800;min-height:46px;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--amber-dark);color:#fff}
+.btn-row{margin-top:4px}
+.results{display:none;margin-top:16px}
+.results.show{display:block}
+.results h4{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:560px){.stat-grid{grid-template-columns:repeat(3,1fr)}}
+.stat{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+.stat.hero{background:var(--amber-bg);border-color:#fde68a}
+.stat .k{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-size:19px;font-weight:800;margin-top:3px;word-break:break-word}
+.stat.hero .v{color:#92400e}
+.stat.wide{grid-column:1 / -1}
+.verdict{margin-top:10px;border-radius:10px;padding:11px 14px;font-size:14px;font-weight:600}
+.verdict.ok{background:var(--green-bg);color:var(--green)}
+.verdict.warn{background:var(--amber-bg);color:#92400e}
+.verdict.bad{background:var(--red-bg);color:var(--red)}
+.note{font-size:12.5px;color:var(--muted);margin-top:12px}
+.formula{font-size:13px;color:var(--muted);background:#f8fafc;border:1px dashed var(--border);border-radius:8px;padding:8px 11px;margin-top:12px}
+.formula code{color:var(--navy);font-weight:600}
+.table-wrap{overflow-x:auto;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th{background:var(--navy);color:#fff;text-align:left;padding:11px 12px;font-size:13px}
+td{padding:10px 12px;border-bottom:1px solid var(--border)}
+tr:nth-child(even) td{background:#f8fafc}
+.guide-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:640px){.guide-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.guide-grid{grid-template-columns:1fr 1fr 1fr}}
+.guide{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 18px;border-left:4px solid var(--amber)}
+.guide .g-tag{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--amber-dark)}
+.guide h3{font-size:16.5px;margin:5px 0 7px}
+.guide p{font-size:14px;color:#334155}
+.guide-link{margin-top:10px;font-size:14px;font-weight:700}
+.guide-link a{text-decoration:none}
+.guide-link a:hover{text-decoration:underline}
+.faq{max-width:820px}
+.faq-item{background:#fff;border-radius:12px;box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+.faq-item button{width:100%;text-align:left;background:none;border:0;padding:16px 18px;font-size:15.5px;font-weight:700;font-family:inherit;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq-item button .chev{color:var(--amber-dark);font-size:20px;flex:none}
+.faq-item .answer{display:none;padding:0 18px 16px;font-size:14.5px;color:#334155}
+.faq-item.open .answer{display:block}
+.faq-item.open .chev{transform:rotate(45deg)}
+.about{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px}
+.about p{font-size:14.5px;color:#334155;margin-bottom:10px}
+footer{background:var(--navy);color:#94a3b8;margin-top:44px;padding:30px 0 26px}
+footer .cols{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:640px){footer .cols{grid-template-columns:2fr 1fr 1fr}}
+footer h4{color:#fff;font-size:15px;margin-bottom:10px}
+footer p,footer a{font-size:13.5px;color:#94a3b8;text-decoration:none}
+footer a:hover{color:#fff}
+footer ul{list-style:none}
+footer li{margin-bottom:6px}
+.copy{border-top:1px solid #1e293b;margin-top:22px;padding-top:16px;font-size:12.5px;text-align:center}
+.modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.65);display:none;align-items:center;justify-content:center;z-index:100;padding:18px}
+.modal-backdrop.show{display:flex}
+.modal{background:#fff;border-radius:16px;max-width:560px;width:100%;max-height:82vh;overflow:auto;padding:24px 22px;position:relative}
+.modal h3{font-size:19px;margin-bottom:10px}
+.modal p{font-size:14.5px;color:#334155;margin-bottom:10px}
+.modal .close-x{position:absolute;top:12px;right:14px;background:#f1f5f9;border:0;border-radius:8px;width:34px;height:34px;font-size:18px;cursor:pointer;color:var(--text)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:999px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:.25s;z-index:200;max-width:92vw;text-align:center}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-in">
+    <a class="brand" href="#top"><span class="mark">태</span><span><b>태양광발전 <span>허브</span></b><small>solarpanelcalc.github.io/</small></span></a>
+    <nav class="main-nav">
+      <a href="#calculators">계산기</a>
+      <a href="#reference">참고표</a>
+      <a href="#guides">가이드</a>
+      <a href="#faq">자주 묻는 질문</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <h1>태양광발전 <span>계산기</span>와 실무 가이드</h1>
+    <p>무료, 즉시 사용 가능한 브라우저 기반 태양광 도구입니다. 발전량 예측, 패널 수량과 면적, 인버터 용량, 케이블 전압강하, 경제성과 회수기간을 계산합니다. 한국 표준 KS C IEC 61215, KS C 8561과 한국전기설비규정(KEC)을 기준으로 하며, 380V 3상 / 220V 단상 60Hz 계통에 맞췄습니다.</p>
+    <div class="badges">
+      <span class="badge">계산기 5종</span>
+      <span class="badge">KS C IEC 61215 · KS C 8561 기준</span>
+      <span class="badge">380V 3상 / 220V 단상 · 60Hz</span>
+      <span class="badge">가입 불필요 · 브라우저에서 바로 계산</span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+<section id="calculators">
+  <h2><span class="bar">|</span> 태양광 계산기</h2>
+  <p class="section-sub">값을 입력하고 계산 버튼을 누르십시오. 모든 결과는 브라우저 안에서 즉시 계산되며, 입력값이 서버로 전송되지 않습니다.</p>
+
+  <div class="calc-grid">
+
+  <!-- 1. 발전량 예측 -->
+  <div class="card wide" id="calc-generation">
+    <div class="tag">발전량</div>
+    <h3>발전량 예측 계산기</h3>
+    <p class="desc">설비용량, 일사 시간, 시스템 효율에서 하루, 한 달, 일 년 발전량을 예측합니다. 한국의 연평균 일사 시간을 기준으로 기본값 3.6시간을 적용했습니다.</p>
+    <div class="field-row">
+      <div class="field"><label>설비용량 (kWp)</label><input type="number" id="gCap" value="3" step="0.1" min="0.1"></div>
+      <div class="field"><label>하루 평균 일사 시간 (h) <small>일사량이 1,000W/m²인 시간으로 환산</small></label><input type="number" id="gSun" value="3.6" step="0.1" min="0.5" max="8"></div>
+      <div class="field"><label>시스템 효율 (%) <small>인버터·케이블·온도 손실 반영</small></label><input type="number" id="gEff" value="80" min="50" max="100"></div>
+    </div>
+    <div class="btn-row"><button class="btn" id="gCalc" type="button">발전량 계산</button></div>
+    <div class="results" id="gResults">
+      <h4>발전량 예측 결과</h4>
+      <div class="stat-grid">
+        <div class="stat hero"><div class="k">하루 발전량</div><div class="v" id="gDay">—</div></div>
+        <div class="stat"><div class="k">한 달 발전량 (30일)</div><div class="v" id="gMonth">—</div></div>
+        <div class="stat"><div class="k">연간 발전량 (365일)</div><div class="v" id="gYear">—</div></div>
+      </div>
+      <p class="formula">계산식: 하루 발전량 = 설비용량(kWp) × 일사 시간(h) × 시스템 효율. 한 달 = 하루 × 30일, 연간 = 하루 × 365일. 예시: 3kWp × 3.6h × 80% = 8.64kWh/일.</p>
+      <p class="note">예측값은 참고용입니다. 실제 발전량은 지역 일사량, 계절, 패널 방향과 각도, 그림자, 온도, 먼지 상태에 따라 달라집니다.</p>
+    </div>
+  </div>
+
+  <!-- 2. 패널 소요 수량·면적 -->
+  <div class="card" id="calc-panels">
+    <div class="tag">패널 · 면적</div>
+    <h3>패널 소요 수량·면적 계산기</h3>
+    <p class="desc">목표 용량 또는 설치 가능한 지붕 면적에서 필요한 패널 수량, 소요 면적, 실제 설비용량을 계산합니다.</p>
+    <div class="field"><label>계산 방식</label>
+      <select id="pMode"><option value="capacity">목표 용량(kWp)으로 계산</option><option value="area">지붕 면적(m²)으로 계산</option></select>
+    </div>
+    <div class="field"><label id="pTargetLabel">목표 용량 (kWp)</label><input type="number" id="pTarget" value="3" step="0.1" min="0.1"></div>
+    <div class="field"><label>패널 출력 (W)</label>
+      <select id="pWatt"><option value="450">450 W</option><option value="500">500 W</option><option value="550" selected>550 W</option></select>
+    </div>
+    <div class="field"><label>패널 1장 면적 (m²)</label><input type="number" id="pArea" value="2.58" step="0.01" min="0.5"></div>
+    <div class="btn-row"><button class="btn" id="pCalc" type="button">패널 수량 계산</button></div>
+    <div class="results" id="pResults">
+      <h4>패널 수량·면적 결과</h4>
+      <div class="stat-grid">
+        <div class="stat hero"><div class="k">필요 패널 수량</div><div class="v" id="pCount">—</div></div>
+        <div class="stat"><div class="k">소요 면적</div><div class="v" id="pTotalArea">—</div></div>
+        <div class="stat"><div class="k">실제 설비용량</div><div class="v" id="pActual">—</div></div>
+      </div>
+      <p class="formula">계산식: 목표 용량 방식은 패널 수량 = 올림(목표 용량 × 1,000 ÷ 패널 출력). 지붕 면적 방식은 패널 수량 = 내림(지붕 면적 ÷ 패널 1장 면적). 소요 면적 = 패널 수량 × 패널 1장 면적.</p>
+      <p class="note">실제 설치 면적은 패널 사이 유지보수 통로와 고정 구조물 여유를 포함하므로, 계산 면적보다 10~20% 넓게 확보하는 것이 안전합니다.</p>
+    </div>
+  </div>
+
+  <!-- 3. 인버터 용량 -->
+  <div class="card" id="calc-inverter">
+    <div class="tag">인버터</div>
+    <h3>인버터 용량 계산기</h3>
+    <p class="desc">직류 설비용량과 DC/AC 비율에서 필요한 인버터 용량과 권장 표준 용량을 계산합니다.</p>
+    <div class="field-row">
+      <div class="field"><label>직류 설비용량 (kWp)</label><input type="number" id="iDc" value="6" step="0.1" min="0.1"></div>
+      <div class="field"><label>DC/AC 비율</label>
+        <select id="iRatio"><option value="1.1">1.1</option><option value="1.2" selected>1.2</option><option value="1.3">1.3</option></select>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn" id="iCalc" type="button">인버터 용량 계산</button></div>
+    <div class="results" id="iResults">
+      <h4>인버터 용량 결과</h4>
+      <div class="stat-grid">
+        <div class="stat hero"><div class="k">필요 인버터 용량</div><div class="v" id="iKw">—</div></div>
+        <div class="stat"><div class="k">권장 표준 용량</div><div class="v" id="iStd">—</div></div>
+        <div class="stat"><div class="k">적용 DC/AC 비율</div><div class="v" id="iRatioOut">—</div></div>
+      </div>
+      <p class="formula">계산식: 인버터 용량(kW) = 직류 설비용량(kWp) ÷ DC/AC 비율. 권장 표준 용량은 3, 5, 6, 8, 10kW 중에서 필요 용량 이상인 가장 작은 값입니다.</p>
+      <p class="note">DC/AC 비율 1.1~1.3은 패널 출력이 정격에 미치지 못하는 시간을 고려한 일반적인 설계 범위입니다. 인버터 최대 직류 입력 전압과 스트링 전압 범위를 반드시 함께 확인하십시오.</p>
+    </div>
+  </div>
+
+  <!-- 4. 케이블·전압강하 -->
+  <div class="card" id="calc-cable">
+    <div class="tag">케이블 · 전압강하</div>
+    <h3>케이블·전압강하 계산기</h3>
+    <p class="desc">직류 회로의 전압, 전류, 길이, 케이블 굵기에서 저항과 전압강하를 계산하고, 직류 3% 기준에 맞는지 판정합니다.</p>
+    <div class="field-row">
+      <div class="field"><label>직류 전압 (V)</label><input type="number" id="cVolt" value="600" min="1"></div>
+      <div class="field"><label>스트링 전류 (A)</label><input type="number" id="cAmp" value="13" step="0.1" min="0.1"></div>
+      <div class="field"><label>편도 길이 (m)</label><input type="number" id="cLen" value="30" min="1"></div>
+      <div class="field"><label>케이블 굵기 (mm², 동선)</label>
+        <select id="cSize"><option value="1.5">1.5</option><option value="2.5">2.5</option><option value="4" selected>4</option><option value="6">6</option><option value="10">10</option></select>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn" id="cCalc" type="button">전압강하 계산</button></div>
+    <div class="results" id="cResults">
+      <h4>전압강하 결과</h4>
+      <div class="stat-grid">
+        <div class="stat"><div class="k">케이블 저항 (편도)</div><div class="v" id="cR">—</div></div>
+        <div class="stat hero"><div class="k">전압강하</div><div class="v" id="cDrop">—</div></div>
+        <div class="stat"><div class="k">전압강하율</div><div class="v" id="cPct">—</div></div>
+        <div class="stat"><div class="k">권장 최소 굵기</div><div class="v" id="cMin">—</div></div>
+        <div class="stat"><div class="k">부하 측 전압</div><div class="v" id="cLoadV">—</div></div>
+        <div class="stat"><div class="k">케이블 손실 전력</div><div class="v" id="cLoss">—</div></div>
+      </div>
+      <div class="verdict ok" id="cVerdict">—</div>
+      <p class="formula">계산식: 저항 R = 0.0175 × 길이 ÷ 단면적(동선, 20°C). 직류 왕복 전압강하 ΔV = 2 × 전류 × R. 판정 기준은 직류 전압강하율 3% 이하입니다.</p>
+    </div>
+  </div>
+
+  <!-- 5. 경제성·회수기간 -->
+  <div class="card wide" id="calc-payback">
+    <div class="tag">경제성</div>
+    <h3>경제성·회수기간 계산기</h3>
+    <p class="desc">설치비, 연간 발전량, 전기요금, 연간 유지비에서 연간 순절감액, 투자 회수기간, 20년 순이익을 계산합니다.</p>
+    <div class="field-row">
+      <div class="field"><label>시스템 설치비 (원)</label><input type="number" id="eCost" value="6000000" min="0"></div>
+      <div class="field"><label>연간 발전량 (kWh)</label><input type="number" id="eGen" value="3154" min="0"></div>
+      <div class="field"><label>전기요금 단가 (원/kWh)</label><input type="number" id="ePrice" value="250" min="0"></div>
+      <div class="field"><label>연간 유지비 (원)</label><input type="number" id="eMaint" value="50000" min="0"></div>
+    </div>
+    <div class="btn-row"><button class="btn" id="eCalc" type="button">경제성 계산</button></div>
+    <div class="results" id="eResults">
+      <h4>경제성 결과</h4>
+      <div class="stat-grid">
+        <div class="stat hero"><div class="k">연간 순절감액</div><div class="v" id="eSave">—</div></div>
+        <div class="stat"><div class="k">투자 회수기간</div><div class="v" id="eYears">—</div></div>
+        <div class="stat"><div class="k">20년 순이익</div><div class="v" id="eProfit">—</div></div>
+        <div class="stat"><div class="k">연간 절감액 (유지비 차감 전)</div><div class="v" id="eGross">—</div></div>
+        <div class="stat"><div class="k">20년 누적 순절감액</div><div class="v" id="eTotal">—</div></div>
+        <div class="stat"><div class="k">kWh당 설치비</div><div class="v" id="ePerKwh">—</div></div>
+      </div>
+      <p class="formula">계산식: 연간 순절감액 = 연간 발전량 × 전기요금 단가 − 연간 유지비. 회수기간 = 설치비 ÷ 연간 순절감액. 20년 순이익 = 연간 순절감액 × 20 − 설치비.</p>
+      <p class="note">이 계산은 전기요금과 발전량이 20년 동안 일정하다고 가정한 단순 계산입니다. 실제 경제성은 요금 인상, 패널 성능 저하, 인버터 교체 비용, 보조금과 세제 혜택에 따라 달라집니다.</p>
+    </div>
+  </div>
+
+  </div><!-- /calc-grid -->
+</section>
+
+<!-- ============ Reference table ============ -->
+<section id="reference">
+  <h2><span class="bar">|</span> 용량별 참고표</h2>
+  <p class="section-sub">550W 패널 기준, 한국의 연평균 조건(일사 시간 3.6시간, 시스템 효율 80%)으로 계산한 참고값입니다. 실제 값은 설치 조건에 따라 달라지므로, 설계 전에는 반드시 현장 조건을 확인하십시오.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>설비용량 (kWp)</th><th>패널 수량 (550W 기준)</th><th>소요 면적 (m²)</th><th>연간 발전량 (kWh)</th><th>예상 설치비 (원)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 kWp</td><td>2장</td><td>5.16 m²</td><td>1,051 kWh</td><td>2,000,000원</td></tr>
+        <tr><td>2 kWp</td><td>4장</td><td>10.32 m²</td><td>2,102 kWh</td><td>4,000,000원</td></tr>
+        <tr><td>3 kWp</td><td>6장</td><td>15.48 m²</td><td>3,154 kWh</td><td>6,000,000원</td></tr>
+        <tr><td>5 kWp</td><td>10장</td><td>25.80 m²</td><td>5,256 kWh</td><td>10,000,000원</td></tr>
+        <tr><td>6 kWp</td><td>11장</td><td>28.38 m²</td><td>6,307 kWh</td><td>12,000,000원</td></tr>
+        <tr><td>10 kWp</td><td>19장</td><td>49.02 m²</td><td>10,512 kWh</td><td>20,000,000원</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">연간 발전량은 1kWp당 1,051kWh(3.6시간 × 80% × 365일)로 계산했습니다. 예상 설치비는 kWp당 약 200만 원으로 가정한 참고값이며, 지붕 구조, 인버터 종류, 케이블 길이, 계통연계 비용에 따라 달라집니다.</p>
+</section>
+
+<!-- ============ Guides ============ -->
+<section id="guides">
+  <h2><span class="bar">|</span> 태양광 실무 가이드</h2>
+  <p class="section-sub">설치와 운영 현장에서 바로 쓸 수 있는 실무 안내입니다. 각 가이드는 원리, 절차, 고장 사례, 자주 묻는 질문을 함께 다룹니다.</p>
+  <div class="guide-grid">
+    <div class="guide">
+      <div class="g-tag">설치 기초</div>
+      <h3>태양광 설치 기초</h3>
+      <p>태양광 설비는 패널, 인버터, 구조물, 케이블, 보호장치로 구성됩니다. 설치 전에는 지붕 하중과 방향, 그림자, 계통연계 조건을 먼저 확인해야 합니다. 기초를 정확히 이해하면 설계 오류와 시공 하자를 크게 줄일 수 있습니다.</p>
+      <p class="guide-link"><a href="guides/solar-installation-basics.html">전체 가이드 읽기 &rarr;</a></p>
+    </div>
+    <div class="guide">
+      <div class="g-tag">설계</div>
+      <h3>패널 설치 각도와 방향</h3>
+      <p>한국에서는 정남향, 경사각 30도 전후가 연간 발전량 기준으로 가장 유리합니다. 다만 지붕 방향과 사용 시간대에 따라 동향이나 서향이 더 나을 수도 있습니다. 각도와 방향이 발전량에 미치는 영향을 수치로 확인하십시오.</p>
+      <p class="guide-link"><a href="guides/panel-angle-direction.html">전체 가이드 읽기 &rarr;</a></p>
+    </div>
+    <div class="guide">
+      <div class="g-tag">장비 선택</div>
+      <h3>인버터 선택 실무</h3>
+      <p>인버터는 직류 전기를 교류로 바꾸는 설비의 심장입니다. 용량, MPPT 회로 수, 최대 입력 전압, 효율, 모니터링 기능을 함께 비교해야 합니다. 잘못 고른 인버터는 발전 손실을 키우고 수명을 단축합니다.</p>
+      <p class="guide-link"><a href="guides/inverter-selection.html">전체 가이드 읽기 &rarr;</a></p>
+    </div>
+    <div class="guide">
+      <div class="g-tag">운영 관리</div>
+      <h3>태양광 유지보수·청소</h3>
+      <p>태양광 설비는 움직이는 부품이 적어 고장이 적지만, 관리하지 않으면 발전량이 서서히 줄어듭니다. 패널 청소, 접속함 점검, 인버터 상태 확인, 발전량 기록을 정기적으로 수행하면 20년 이상 안정적으로 운영할 수 있습니다.</p>
+      <p class="guide-link"><a href="guides/maintenance-cleaning.html">전체 가이드 읽기 &rarr;</a></p>
+    </div>
+    <div class="guide">
+      <div class="g-tag">계통연계</div>
+      <h3>계통연계 절차</h3>
+      <p>태양광 전기를 한전 계통에 연결하려면 사용전검사, 계통연계 신청, 계량기 교체, 상계거래 계약 등 정해진 절차를 거쳐야 합니다. 절차를 미리 알면 공사 일정이 꼬이지 않고, 발전 개시 시점을 앞당길 수 있습니다.</p>
+      <p class="guide-link"><a href="guides/grid-connection.html">전체 가이드 읽기 &rarr;</a></p>
+    </div>
+    <div class="guide">
+      <div class="g-tag">발전량 관리</div>
+      <h3>발전량 저하 원인과 대책</h3>
+      <p>발전량이 예상보다 적다면 그림자, 오염, 온도, 패널 열화, 인버터 이상, 케이블 손상 중 하나가 원인일 가능성이 큽니다. 원인별로 확인 순서와 측정 방법을 알면 불필요한 교체 없이 문제를 찾을 수 있습니다.</p>
+      <p class="guide-link"><a href="guides/generation-decline-causes.html">전체 가이드 읽기 &rarr;</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <h2><span class="bar">|</span> 자주 묻는 질문</h2>
+  <p class="section-sub">태양광 설치를 검토하는 분들이 가장 자주 묻는 질문입니다.</p>
+  <div class="faq">
+    <div class="faq-item">
+      <button type="button">3kW 태양광을 설치하면 한 달에 얼마나 발전하나요? <span class="chev">+</span></button>
+      <div class="answer">한국 평균 조건(일사 시간 3.6시간, 시스템 효율 80%)에서는 3kWp 설비가 하루 약 8.64kWh, 한 달 약 259kWh, 연간 약 3,154kWh를 발전합니다. 여름에는 더 많이, 겨울에는 더 적게 발전하므로 월별 편차가 큽니다. 위의 발전량 예측 계산기에 실제 용량을 넣어 확인해 보십시오.</div>
+    </div>
+    <div class="faq-item">
+      <button type="button">패널은 어느 방향, 어느 각도로 설치해야 하나요? <span class="chev">+</span></button>
+      <div class="answer">연간 발전량 기준으로는 정남향, 경사각 약 30도가 가장 유리합니다. 지붕이 남향이 아니어도 동향이나 서향 설치가 가능하며, 발전량 감소는 보통 10% 이내입니다. 북향 지붕은 발전량이 크게 줄므로 설치 전 발전량 검토가 필요합니다.</div>
+    </div>
+    <div class="faq-item">
+      <button type="button">인버터는 설비용량과 같은 용량을 골라야 하나요? <span class="chev">+</span></button>
+      <div class="answer">반드시 같은 용량일 필요는 없습니다. 패널 출력이 정격에 도달하는 시간이 짧기 때문에, DC/AC 비율 1.1~1.3 범위에서 인버터를 한 단계 작게 고르는 것이 일반적입니다. 예를 들어 직류 6kWp에는 5kW 인버터를 쓰는 경우가 많습니다. 다만 인버터의 최대 직류 입력 전압과 전류는 반드시 확인해야 합니다.</div>
+    </div>
+    <div class="faq-item">
+      <button type="button">태양광 패널 청소는 얼마나 자주 해야 하나요? <span class="chev">+</span></button>
+      <div class="answer">빗물이 먼지를 씻어내는 경우가 많아, 오염이 심한 지역이 아니라면 연 1~2회 점검과 필요 시 청소로 충분합니다. 황사나 조류 배설물, 공사 먼지가 쌓이면 발전량이 눈에 띄게 줄므로, 발전량을 기록하면서 청소 시점을 판단하는 것이 좋습니다. 청소할 때는 부드러운 솔과 물을 사용하고, 표면에 흠집을 내지 않도록 주의하십시오.</div>
+    </div>
+    <div class="faq-item">
+      <button type="button">태양광 설치 후 전기를 팔 수 있나요? <span class="chev">+</span></button>
+      <div class="answer">네, 가능합니다. 계통연계가 완료되면 남은 전기를 한전에 판매하거나 상계거래를 통해 전기요금에서 차감할 수 있습니다. 판매 단가와 계약 조건은 용량과 계약 방식에 따라 다르므로, 설치 전 한국전력공사와 지자체 지원 정책을 확인하십시오.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ About ============ -->
+<section id="about">
+  <div class="about">
+    <h2><span class="bar">|</span> 태양광발전 허브 소개</h2>
+    <p>태양광발전 허브는 태양광 설치를 검토하는 가정과 사업장, 시공 현장 실무자를 위한 무료 참고 사이트입니다. 계산기는 한국 표준인 KS C IEC 61215(결정질 실리콘 태양전지 모듈 설계 인증)와 KS C 8561(태양광발전용 모듈), 한국전기설비규정(KEC)을 기준으로 하며, 한국 계통 조건인 380V 3상 / 220V 단상 60Hz에 맞췄습니다.</p>
+    <p><strong>면책 조항:</strong> 모든 계산 결과는 안내용 추정치이며, 제조사의 명판 자료, 한국전기설비규정(KEC), 관련 법령, 전기기술자의 판단을 대신하지 않습니다. 보호장치 설정, 케이블 굵기, 인버터 용량은 설비 서류와 현지 규정을 확인한 뒤 결정하십시오. 태양광발전 허브는 이 계산을 근거로 수행한 작업에 대해 책임을 지지 않습니다.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>태양광발전 허브</h4>
+        <p>무료 태양광 계산기와 실무 가이드. KS C IEC 61215 · KS C 8561 기준 · 380V 3상 / 220V 단상 · 60Hz.</p>
+        <p style="margin-top:8px">solarpanelcalc.github.io/</p>
+      </div>
+      <div>
+        <h4>계산기</h4>
+        <ul>
+          <li><a href="#calc-generation">발전량 예측</a></li>
+          <li><a href="#calc-panels">패널 소요 수량·면적</a></li>
+          <li><a href="#calc-inverter">인버터 용량</a></li>
+          <li><a href="#calc-cable">케이블·전압강하</a></li>
+          <li><a href="#calc-payback">경제성·회수기간</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>사이트</h4>
+        <ul>
+          <li><a href="#" data-modal="privacyModal">개인정보처리방침</a></li>
+          <li><a href="#" data-modal="aboutModal">사이트 소개</a></li>
+          <li><a href="#" data-modal="contactModal">문의</a></li>
+          <li><a href="#faq">자주 묻는 질문</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2026 태양광발전 허브 · 모든 계산은 브라우저 안에서 처리됩니다 · 결과는 추정치입니다 — 제조사 자료와 현지 전기 규정을 확인하십시오.</div>
+  </div>
+</footer>
+
+<!-- Modals -->
+<div class="modal-backdrop" id="privacyModal">
+  <div class="modal">
+    <button class="close-x" data-close aria-label="닫기">×</button>
+    <h3>개인정보처리방침</h3>
+    <p>태양광발전 허브는 정적 웹사이트입니다. 개인정보를 수집, 저장, 전송하지 않습니다. 모든 계산기 입력값은 브라우저 안에서 처리되며 서버로 전송되지 않습니다.</p>
+    <p>이 사이트는 자체 쿠키와 분석 도구를 사용하지 않습니다. 향후 사이트에 광고가 게재되는 경우, 제3자 광고 사업자가 방문 기록을 바탕으로 광고를 제공하기 위해 쿠키를 사용할 수 있으며, 브라우저 설정이나 광고 사업자의 광고 설정 페이지에서 맞춤형 광고를 거부할 수 있습니다.</p>
+  </div>
+</div>
+<div class="modal-backdrop" id="aboutModal">
+  <div class="modal">
+    <button class="close-x" data-close aria-label="닫기">×</button>
+    <h3>태양광발전 허브 소개</h3>
+    <p>태양광발전 허브는 무료 브라우저 기반 태양광 계산기를 제공합니다. 발전량 예측, 패널 수량과 면적, 인버터 용량, 케이블 전압강하, 경제성과 회수기간을 계산할 수 있습니다.</p>
+    <p>계산은 한국 표준 KS C IEC 61215, KS C 8561과 한국전기설비규정(KEC)을 기준으로 하며, 380V 3상 / 220V 단상 60Hz 계통에 맞췄습니다. 이 사이트는 참고 자료이며, 제조사 서류나 자격을 갖춘 전기기술자를 대신하지 않습니다.</p>
+  </div>
+</div>
+<div class="modal-backdrop" id="contactModal">
+  <div class="modal">
+    <button class="close-x" data-close aria-label="닫기">×</button>
+    <h3>문의</h3>
+    <p>잘못된 계산값이나 추가를 원하는 계산기가 있으십니까? 이 사이트의 GitHub 저장소 <strong>github.com/motorwindinghub/solar-hub</strong>에 이슈를 열어 주십시오. 확인 후 검토하겠습니다.</p>
+    <p>현장 방문이 필요한 개별 설치 상담은 받지 않습니다. 실제 설치와 전기 작업은 해당 지역의 자격을 갖춘 전기기술자에게 문의하십시오.</p>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+'use strict';
+
+/* ================= Pure math (exposed for testing) ================= */
+var PANEL_AREA = 2.58; /* m2 per panel */
+var INV_SIZES = [3, 5, 6, 8, 10];
+var CABLE_SIZES = [1.5, 2.5, 4, 6, 10];
+var RHO_CU = 0.0175; /* ohm·mm2/m at 20 C */
+
+function nextSize(list, need) {
+  for (var i = 0; i < list.length; i++) if (list[i] >= need) return list[i];
+  return list[list.length - 1];
+}
+
+function calcGeneration(kwp, sunHours, effPct) {
+  var eff = effPct / 100;
+  var daily = kwp * sunHours * eff;
+  return { dailyKwh: daily, monthlyKwh: daily * 30, annualKwh: daily * 365 };
+}
+
+function calcPanels(mode, target, watt, panelArea) {
+  var count;
+  if (mode === 'area') {
+    count = Math.floor(target / panelArea);
+  } else {
+    count = Math.ceil(target * 1000 / watt);
+  }
+  return { count: count, totalArea: count * panelArea, actualKwp: count * watt / 1000 };
+}
+
+function calcInverter(dcKwp, ratio) {
+  var kw = dcKwp / ratio;
+  return { kw: kw, stdKw: nextSize(INV_SIZES, kw), ratio: ratio };
+}
+
+function calcCable(volts, amps, lenM, areaMm2) {
+  var r = RHO_CU * lenM / areaMm2;
+  var dropV = 2 * amps * r;
+  var dropPct = dropV / volts * 100;
+  var minSize = null;
+  for (var i = 0; i < CABLE_SIZES.length; i++) {
+    var rr = RHO_CU * lenM / CABLE_SIZES[i];
+    if (2 * amps * rr / volts * 100 <= 3) { minSize = CABLE_SIZES[i]; break; }
+  }
+  var lossW = 2 * amps * amps * r;
+  return { resistance: r, dropV: dropV, dropPct: dropPct, voltAtLoad: volts - dropV,
+    minSize: minSize, lossW: lossW, ok: dropPct <= 3 };
+}
+
+function calcPayback(cost, annualKwh, pricePerKwh, maint) {
+  var gross = annualKwh * pricePerKwh;
+  var net = gross - maint;
+  var years = net > 0 ? cost / net : Infinity;
+  return { gross: gross, netAnnual: net, paybackYears: years,
+    profit20: net * 20 - cost, total20: net * 20,
+    costPerKwh: annualKwh > 0 ? cost / annualKwh : 0 };
+}
+
+window.SOLAR = { calcGeneration: calcGeneration, calcPanels: calcPanels,
+  calcInverter: calcInverter, calcCable: calcCable, calcPayback: calcPayback, nextSize: nextSize };
+
+/* ================= DOM wiring ================= */
+function $(id) { return document.getElementById(id); }
+function num(id, def) { var v = parseFloat($(id).value); return isNaN(v) ? def : v; }
+function fmt(n, dec) {
+  if (n === null || n === undefined || !isFinite(n)) return '—';
+  return Number(n).toLocaleString('ko-KR', { minimumFractionDigits: dec === undefined ? 2 : dec, maximumFractionDigits: dec === undefined ? 2 : dec });
+}
+function fmtInt(n) {
+  if (n === null || n === undefined || !isFinite(n)) return '—';
+  return Math.round(n).toLocaleString('ko-KR');
+}
+var toastTimer = null;
+function showToast(msg) {
+  var t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('show'); }, 3200);
+}
+function needOk(vals) {
+  for (var i = 0; i < vals.length; i++) if (!(vals[i] > 0)) { showToast('모든 항목에 양수를 입력해 주십시오.'); return false; }
+  return true;
+}
+
+/* --- 1. 발전량 --- */
+$('gCalc').addEventListener('click', function () {
+  var kwp = num('gCap', 0), sun = num('gSun', 0), eff = num('gEff', 0);
+  if (!needOk([kwp, sun, eff])) return;
+  var r = calcGeneration(kwp, sun, eff);
+  $('gDay').textContent = fmt(r.dailyKwh, 2) + ' kWh';
+  $('gMonth').textContent = fmt(r.monthlyKwh, 1) + ' kWh';
+  $('gYear').textContent = fmt(r.annualKwh, 1) + ' kWh';
+  $('gResults').classList.add('show');
+});
+
+/* --- 2. 패널 --- */
+$('pMode').addEventListener('change', function () {
+  if ($('pMode').value === 'area') {
+    $('pTargetLabel').textContent = '지붕 면적 (m²)';
+    $('pTarget').value = '20';
+  } else {
+    $('pTargetLabel').textContent = '목표 용량 (kWp)';
+    $('pTarget').value = '3';
+  }
+});
+$('pCalc').addEventListener('click', function () {
+  var mode = $('pMode').value, target = num('pTarget', 0);
+  var watt = parseFloat($('pWatt').value), area = num('pArea', 0);
+  if (!needOk([target, watt, area])) return;
+  var r = calcPanels(mode, target, watt, area);
+  $('pCount').textContent = r.count + '장';
+  $('pTotalArea').textContent = fmt(r.totalArea, 2) + ' m²';
+  $('pActual').textContent = fmt(r.actualKwp, 2) + ' kWp';
+  $('pResults').classList.add('show');
+});
+
+/* --- 3. 인버터 --- */
+$('iCalc').addEventListener('click', function () {
+  var dc = num('iDc', 0), ratio = parseFloat($('iRatio').value);
+  if (!needOk([dc, ratio])) return;
+  var r = calcInverter(dc, ratio);
+  $('iKw').textContent = fmt(r.kw, 2) + ' kW';
+  $('iStd').textContent = r.stdKw + ' kW';
+  $('iRatioOut').textContent = fmt(r.ratio, 1);
+  $('iResults').classList.add('show');
+});
+
+/* --- 4. 케이블 --- */
+$('cCalc').addEventListener('click', function () {
+  var volts = num('cVolt', 0), amps = num('cAmp', 0), len = num('cLen', 0);
+  var area = parseFloat($('cSize').value);
+  if (!needOk([volts, amps, len])) return;
+  var r = calcCable(volts, amps, len, area);
+  $('cR').textContent = fmt(r.resistance, 3) + ' Ω';
+  $('cDrop').textContent = fmt(r.dropV, 2) + ' V';
+  $('cPct').textContent = fmt(r.dropPct, 2) + ' %';
+  $('cMin').textContent = r.minSize ? r.minSize + ' mm²' : '10 mm² 초과';
+  $('cLoadV').textContent = fmt(r.voltAtLoad, 1) + ' V';
+  $('cLoss').textContent = fmt(r.lossW, 1) + ' W';
+  var verdict = $('cVerdict');
+  if (r.ok) {
+    verdict.className = 'verdict ok';
+    verdict.textContent = '합격 — 전압강하율이 직류 기준 3% 이하입니다. ' + area + ' mm² 케이블을 사용할 수 있습니다.';
+  } else {
+    verdict.className = 'verdict bad';
+    verdict.textContent = '불합격 — 전압강하율이 3%를 초과합니다. 최소 ' + (r.minSize ? r.minSize + ' mm²' : '10 mm²보다 굵은') + ' 케이블을 사용하십시오.';
+  }
+  $('cResults').classList.add('show');
+});
+
+/* --- 5. 경제성 --- */
+$('eCalc').addEventListener('click', function () {
+  var cost = num('eCost', 0), gen = num('eGen', 0), price = num('ePrice', 0), maint = num('eMaint', 0);
+  if (cost <= 0 || gen <= 0 || price <= 0) { showToast('설치비, 연간 발전량, 전기요금 단가를 입력해 주십시오.'); return; }
+  var r = calcPayback(cost, gen, price, maint);
+  $('eSave').textContent = fmtInt(r.netAnnual) + '원';
+  $('eYears').textContent = isFinite(r.paybackYears) ? fmt(r.paybackYears, 1) + '년' : '회수 불가';
+  $('eProfit').textContent = fmtInt(r.profit20) + '원';
+  $('eGross').textContent = fmtInt(r.gross) + '원';
+  $('eTotal').textContent = fmtInt(r.total20) + '원';
+  $('ePerKwh').textContent = fmtInt(r.costPerKwh) + '원/kWh';
+  $('eResults').classList.add('show');
+});
+
+/* --- FAQ accordion --- */
+document.querySelectorAll('.faq-item button').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var item = btn.parentElement;
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+/* --- Modals --- */
+document.querySelectorAll('[data-modal]').forEach(function (link) {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    $(link.getAttribute('data-modal')).classList.add('show');
+  });
+});
+document.querySelectorAll('.modal-backdrop').forEach(function (bd) {
+  bd.addEventListener('click', function (e) { if (e.target === bd) bd.classList.remove('show'); });
+  bd.querySelectorAll('[data-close]').forEach(function (b) {
+    b.addEventListener('click', function () { bd.classList.remove('show'); });
+  });
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-backdrop.show').forEach(function (bd) { bd.classList.remove('show'); });
+});
+})();
+</script>
+</body>
+</html>
